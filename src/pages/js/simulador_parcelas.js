@@ -1726,7 +1726,7 @@
 
       const placeholders = {
         "{{LOGO_IMG_TAG}}":
-            '<img src="src/assets/LogoBranca.png" alt="Logo" class="logo">',
+            '<img src="./src/assets/LogoBranca.png" alt="Logo" class="logo">',
         "{{NOME_CLIENTE}}": dadosCredito.nomeCliente.toUpperCase() || "N/A",
         "{{TIPO_BEM}}": dadosCredito.tipoBem.toUpperCase() || "N/A",
         "{{ADMIN_NOME}}": dadosCredito.admin.toUpperCase() || "N/A",
