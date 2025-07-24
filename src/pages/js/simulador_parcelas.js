@@ -1709,8 +1709,8 @@
 
     try {
       const [templateResponse, cssResponse] = await Promise.all([
-        fetch("/src/pages/html/pdf_template.html"),
-        fetch("/src/pages/css/pdf_style.css"),
+        fetch("src/pages/html/pdf_template.html"),
+        fetch("src/pages/css/pdf_style.css"),
       ]);
 
       let htmlTemplate = await templateResponse.text();
