@@ -1845,12 +1845,6 @@
       resultadoCreditoContratado.textContent = formatarMoeda(valorCredito);
     }
 
-    if (resultadoParcelaBaseSemRedutor) {
-      resultadoParcelaBaseSemRedutor.innerHTML = `<s>${formatarMoeda(
-        parcelaOriginal
-      )}</s>`;
-    }
-
     const comLance = lance && lance.tipo !== "nenhum";
 
     const parcelaComRedutorEl = document.getElementById(
@@ -1868,6 +1862,46 @@
         parcelaComRedutorEl.style.fontWeight = "";
       }
     }
+    const containerParcelaComRedutor = document.getElementById("containerParcelaComRedutor");
+const resultadoParcelaBaseSemRedutor = document.getElementById("resultadoParcelaBaseSemRedutor");
+
+if (percentualRedutor > 0) {
+
+    setElementVisibility(containerParcelaComRedutor, true);
+    
+    const parcelaComRedutorEl = document.getElementById("resultadoParcelaComRedutor");
+    if (parcelaComRedutorEl) {
+        parcelaComRedutorEl.textContent = formatarMoeda(parcelaComRedutor);
+        parcelaComRedutorEl.style.color = 'rgb(136, 201, 38)';
+        parcelaComRedutorEl.style.fontSize = '1.25em';
+        parcelaComRedutorEl.style.fontWeight = '700';
+    }
+
+    // Preenche a porcentagem do redutor
+    const resultadoPercentualRedutorEl = document.getElementById("resultadoPercentualRedutor");
+    if (resultadoPercentualRedutorEl) {
+        resultadoPercentualRedutorEl.textContent = `${(percentualRedutor || 0).toFixed(2).replace(".", ",")}`;
+    }
+
+    // Mostra a "Parcela Integral" com risco e SEM destaque
+    if (resultadoParcelaBaseSemRedutor) {
+        resultadoParcelaBaseSemRedutor.innerHTML = `<s>${formatarMoeda(parcelaOriginal)}</s>`;
+        resultadoParcelaBaseSemRedutor.style.color = '';
+        resultadoParcelaBaseSemRedutor.style.fontSize = '';
+        resultadoParcelaBaseSemRedutor.style.fontWeight = '';
+    }
+
+} else {
+
+    setElementVisibility(containerParcelaComRedutor, false);
+
+    if (resultadoParcelaBaseSemRedutor) {
+        resultadoParcelaBaseSemRedutor.innerHTML = formatarMoeda(parcelaOriginal);
+        resultadoParcelaBaseSemRedutor.style.color = 'rgb(136, 201, 38)';
+        resultadoParcelaBaseSemRedutor.style.fontSize = '1.25em';
+        resultadoParcelaBaseSemRedutor.style.fontWeight = '700';
+    }
+}
 
     const comRedutorAplicado = percentualRedutor > 0;
     setElementVisibility(
